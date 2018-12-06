@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="core">
+      <UniqueIdentifier>{b7f22600-ab79-408d-83b1-5fd00430d0a6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="front_end">
+      <UniqueIdentifier>{20a49a33-edf4-4617-86ed-5a97a2a8efbb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="core\injection">
+      <UniqueIdentifier>{08b252f6-83c7-4b40-b92f-991bafeb9344}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="core\utilities">
+      <UniqueIdentifier>{d25eed33-f82a-4cd8-9443-74fd30bfcd91}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="core\security">
+      <UniqueIdentifier>{a2118748-1ec2-488d-94b1-a4ee7c78d968}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="core\api">
+      <UniqueIdentifier>{d153e4fa-e843-47e5-a994-af7469054da9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="core\win_api">
+      <UniqueIdentifier>{be07f3b2-fa3a-4e53-93ba-c81383a51450}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="core\utilities\misc">
+      <UniqueIdentifier>{79b0a6f2-6325-4f68-986a-cb1c03088cfe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="core\utilities\pe">
+      <UniqueIdentifier>{e00cff29-faa0-4fb3-a2e3-a9d41d323bc2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="core\process">
+      <UniqueIdentifier>{e0198b2d-a5da-42dc-a17b-54da1b6b180a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="core\injection\ldr_load">
+      <UniqueIdentifier>{e71f3fe3-06a2-48f2-a8e3-5710aa277241}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="core\injection\manual_load">
+      <UniqueIdentifier>{fdfb60bc-febd-4a29-87aa-89b954841376}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="core\injection\manual_load\mapper">
+      <UniqueIdentifier>{310a1941-d9bd-47a6-bcb5-db4b0b80908c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="core\injection\manual_load\import_tracker">
+      <UniqueIdentifier>{f63aebb8-f60a-4812-837b-832968139864}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="core\injection\manual_load\executors">
+      <UniqueIdentifier>{9622e7d7-950a-4563-8817-799fa7cf093a}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>front_end</Filter>
+    </ClCompile>
+    <ClCompile Include="misc.cpp">
+      <Filter>core\utilities\misc</Filter>
+    </ClCompile>
+    <ClCompile Include="pe.cpp">
+      <Filter>core\utilities\pe</Filter>
+    </ClCompile>
+    <ClCompile Include="process.cpp">
+      <Filter>core\process</Filter>
+    </ClCompile>
+    <ClCompile Include="api.cpp">
+      <Filter>core\api</Filter>
+    </ClCompile>
+    <ClCompile Include="imports.cpp">
+      <Filter>core\utilities\misc</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="common.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="win.h">
+      <Filter>core\win_api</Filter>
+    </ClInclude>
+    <ClInclude Include="win_client_id.h">
+      <Filter>core\win_api</Filter>
+    </ClInclude>
+    <ClInclude Include="win_defines.h">
+      <Filter>core\win_api</Filter>
+    </ClInclude>
+    <ClInclude Include="win_peb.h">
+      <Filter>core\win_api</Filter>
+    </ClInclude>
+    <ClInclude Include="win_process_info.h">
+      <Filter>core\win_api</Filter>
+    </ClInclude>
+    <ClInclude Include="win_system_handle_info.h">
+      <Filter>core\win_api</Filter>
+    </ClInclude>
+    <ClInclude Include="win_system_info.h">
+      <Filter>core\win_api</Filter>
+    </ClInclude>
+    <ClInclude Include="win_teb.h">
+      <Filter>core\win_api</Filter>
+    </ClInclude>
+    <ClInclude Include="misc.h">
+      <Filter>core\utilities\misc</Filter>
+    </ClInclude>
+    <ClInclude Include="pe.h">
+      <Filter>core\utilities\pe</Filter>
+    </ClInclude>
+    <ClInclude Include="process.h">
+      <Filter>core\process</Filter>
+    </ClInclude>
+    <ClInclude Include="api.h">
+      <Filter>core\api</Filter>
+    </ClInclude>
+    <ClInclude Include="imports.h">
+      <Filter>core\utilities\misc</Filter>
+    </ClInclude>
+    <ClInclude Include="manual_loader.h">
+      <Filter>core\injection\manual_load</Filter>
+    </ClInclude>
+    <ClInclude Include="pe_mapper.h">
+      <Filter>core\injection\manual_load\mapper</Filter>
+    </ClInclude>
+    <ClInclude Include="import_tracker.h">
+      <Filter>core\injection\manual_load\import_tracker</Filter>
+    </ClInclude>
+    <ClInclude Include="base_executor.h">
+      <Filter>core\injection\manual_load\executors</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
