@@ -138,7 +138,9 @@
   <ItemGroup>
     <ClCompile Include="api.cpp" />
     <ClCompile Include="imports.cpp" />
+    <ClCompile Include="import_tracker.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="manual_loader.cpp" />
     <ClCompile Include="misc.cpp" />
     <ClCompile Include="pe.cpp" />
     <ClCompile Include="process.cpp" />
@@ -155,6 +157,7 @@
     <ClInclude Include="pe_mapper.h" />
     <ClInclude Include="process.h" />
     <ClInclude Include="win.h" />
+    <ClInclude Include="win_api_set.h" />
     <ClInclude Include="win_client_id.h" />
     <ClInclude Include="win_defines.h" />
     <ClInclude Include="win_peb.h" />

@@ -45,4 +45,23 @@ namespace norton {
 
 		return results;
 	}
+
+	bool is_supported_api_schema() {
+		win::PPEB peb = (win::PPEB)get_local_peb();
+		win::API_SET_NAMESPACE* api_set = (win::API_SET_NAMESPACE *)peb->ApiSetMap;
+		return api_set->Version >= 6;
+	}
+
+	std::wstring to_wide(const std::string& s) {
+		std::wstring temp(s.length(), L' ');
+		std::copy(s.begin(), s.end(), temp.begin());
+		return temp;
+	}
+
+	std::string to_narrow(const std::wstring& s) {
+		std::string temp(s.length(), ' ');
+		std::copy(s.begin(), s.end(), temp.begin());
+		return temp;
+	}
+
 }

@@ -14,9 +14,20 @@ namespace norton {
 		void *m_module_buffer;
 		pe *m_pe;
 
-		process *m_target_process;
-		pe_mapper *m_mapper;
+		process        *m_process;
+		pe_mapper      *m_mapper;
 		import_tracker *m_imports;
-		base_executor *m_executor;
+		base_executor  *m_executor;
+	};
+
+	class manual_loader {
+	public:
+		bool inject(manual_loader_context& context);
+		bool inject(std::string file, process proc);
+		bool inject(void *buffer, process proc);
+	private:
+
+		bool run_current_context();
+		manual_loader_context m_context;
 	};
 }

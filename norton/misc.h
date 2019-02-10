@@ -14,4 +14,18 @@ namespace norton {
 	};
 
 	std::vector<loaded_module> get_loaded_modules();
+
+	bool is_supported_api_schema();
+
+	std::wstring to_wide(const std::string& s);
+	std::string to_narrow(const std::wstring& s);
+
+	template<typename T>
+	inline T get_absolute_address(void *instruction, uint8_t skip = 0x1, uint8_t size = 0x5) {
+		if (!instruction)
+			return 0;
+
+		int relative = *(int *)((uint8_t *)(instruction)+skip);
+		return (T)(relative + (char *)instruction + size);
+	}
 }

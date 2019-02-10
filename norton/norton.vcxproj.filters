@@ -66,6 +66,12 @@
     <ClCompile Include="imports.cpp">
       <Filter>core\utilities\misc</Filter>
     </ClCompile>
+    <ClCompile Include="manual_loader.cpp">
+      <Filter>core\injection\manual_load</Filter>
+    </ClCompile>
+    <ClCompile Include="import_tracker.cpp">
+      <Filter>core\injection\manual_load\import_tracker</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="common.h">
@@ -121,6 +127,9 @@
     </ClInclude>
     <ClInclude Include="base_executor.h">
       <Filter>core\injection\manual_load\executors</Filter>
+    </ClInclude>
+    <ClInclude Include="win_api_set.h">
+      <Filter>core\win_api</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
