@@ -28,4 +28,7 @@ namespace norton {
 		int relative = *(int *)((uint8_t *)(instruction)+skip);
 		return (T)(relative + (char *)instruction + size);
 	}
+
+	std::string get_working_directory();
+	void *load_file_to_memory(std::string name);
 }

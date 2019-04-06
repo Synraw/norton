@@ -18,20 +18,21 @@ namespace norton {
 		}
 
 		for (auto& entry : m_modules) {
-			for (auto ittr : entry.second.m_exports) {
-				auto exp = ittr.second;
+			for (auto& ittr : entry.second.m_exports) {
+				auto &exp = ittr.second;
 
-				if (exp.m_is_forwarded) {
+				if (exp.m_is_forwarded && exp.m_address == 0) {
 					auto dot		   = exp.m_forward_string.find_last_of('.');
 					auto forward_mod   = exp.m_forward_string.substr(0, dot);
 					auto forward_symb  = exp.m_forward_string.substr(dot+1);
 
 					std::transform(forward_mod.begin(), forward_mod.end(), forward_mod.begin(), &tolower);
-
 					exp.m_address = resolve(forward_mod, forward_symb);
 
 					if (exp.m_address == 0) {
-						printf("failed to resolve forward %s->%s\n", forward_mod.c_str(), forward_symb.c_str());
+						if (resolve_api_set(forward_mod) == "kernel32.dll" && entry.first == "kernel32.dll") {
+							exp.m_address = resolve("kernelbase.dll", forward_symb);
+						}
 					}
 				}
 			}
@@ -44,8 +45,9 @@ namespace norton {
 		auto mod_ittr = m_modules.find(module_name);
 		if (mod_ittr != m_modules.end()) {
 			auto exp_ittr = mod_ittr->second.m_exports.find(name);
-			if (exp_ittr != mod_ittr->second.m_exports.end())
+			if (exp_ittr != mod_ittr->second.m_exports.end()) {
 				return exp_ittr->second.m_address;
+			}
 		}
 
 		return 0;
@@ -96,13 +98,14 @@ namespace norton {
 			if (offset != 0) {
 				remote_export entry;
 				entry.m_name    = temp_name_buffer;
-				entry.m_address = module_base + offset;
 				entry.m_ordinal = ordinal_table[i];
+				entry.m_address = module_base + offset;
 				entry.m_is_forwarded = false;
 
 				if (offset >= exp_directory->VirtualAddress && offset <= (exp_directory->VirtualAddress + exp_directory->Size)) {
 					m_target_process->read(module_base + offset, &temp_name_buffer, 255);
 					entry.m_forward_string = temp_name_buffer;
+					entry.m_address = 0;
 					entry.m_is_forwarded = true;
 				}
 

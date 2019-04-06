@@ -46,6 +46,12 @@
     <Filter Include="core\injection\manual_load\executors">
       <UniqueIdentifier>{9622e7d7-950a-4563-8817-799fa7cf093a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="core\injection\manual_load\executors\thread_executor">
+      <UniqueIdentifier>{cd61a593-6c88-45ef-9269-97fe0c0b3325}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="core\injection\manual_load\executors\hijack_executor">
+      <UniqueIdentifier>{8f4bda75-65b4-46cb-bb34-a41312b05546}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -71,6 +77,12 @@
     </ClCompile>
     <ClCompile Include="import_tracker.cpp">
       <Filter>core\injection\manual_load\import_tracker</Filter>
+    </ClCompile>
+    <ClCompile Include="pe_mapper.cpp">
+      <Filter>core\injection\manual_load\mapper</Filter>
+    </ClCompile>
+    <ClCompile Include="thread_executor.cpp">
+      <Filter>core\injection\manual_load\executors\thread_executor</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -130,6 +142,9 @@
     </ClInclude>
     <ClInclude Include="win_api_set.h">
       <Filter>core\win_api</Filter>
+    </ClInclude>
+    <ClInclude Include="thread_executor.h">
+      <Filter>core\injection\manual_load\executors\thread_executor</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

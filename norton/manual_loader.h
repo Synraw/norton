@@ -12,6 +12,7 @@ namespace norton {
 	struct manual_loader_context {
 		std::string m_file_name;
 		void *m_module_buffer;
+		uintptr_t m_remote_buffer;
 		pe *m_pe;
 
 		process        *m_process;
@@ -23,8 +24,8 @@ namespace norton {
 	class manual_loader {
 	public:
 		bool inject(manual_loader_context& context);
-		bool inject(std::string file, process proc);
-		bool inject(void *buffer, process proc);
+		bool inject(std::string file, process *proc);
+		bool inject(void *buffer, process *proc);
 	private:
 
 		bool run_current_context();

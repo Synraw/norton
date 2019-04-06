@@ -64,4 +64,27 @@ namespace norton {
 		return temp;
 	}
 
+	std::string get_working_directory() {
+		char buffer[MAX_PATH];
+		GetCurrentDirectory(MAX_PATH, buffer);
+		return std::string(buffer);
+	}
+
+	void *load_file_to_memory(std::string name) {
+		auto file = CreateFileA(name.c_str(), GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+		if (file == INVALID_HANDLE_VALUE)
+			return nullptr;
+
+		auto file_size = GetFileSize(file, NULL);
+		void *data = malloc(file_size);
+
+		unsigned long bytes = 0;
+		if (!ReadFile(file, data, file_size, &bytes, NULL)) {
+			free(data);
+			return nullptr;
+		}
+
+		CloseHandle(file);
+		return data;
+	}
 }
