@@ -1,5 +1,6 @@
 #include "manual_loader.h"
 #include "thread_executor.h"
+#include "hijack_executor.h"
 #include "misc.h"
 
 namespace norton {
@@ -28,7 +29,7 @@ namespace norton {
 
 		m_context.m_remote_buffer = 0;
 		m_context.m_mapper        = new pe_mapper();
-		m_context.m_executor	  = new thread_executor(proc);
+		m_context.m_executor	  = new hijack_executor(proc);
 
 		return run_current_context();
 	}

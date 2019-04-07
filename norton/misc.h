@@ -31,4 +31,7 @@ namespace norton {
 
 	std::string get_working_directory();
 	void *load_file_to_memory(std::string name);
+
+	unsigned long get_running_thread_by_pid(unsigned long pid);
+	unsigned long get_pid_by_process_name(std::string process_name);
 }

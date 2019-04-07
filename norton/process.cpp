@@ -4,6 +4,7 @@
 
 namespace norton {
 	void process::attach(unsigned long pid) {
+		m_pid = pid;
 		m_handle = OpenProcess(PROCESS_ALL_ACCESS, FALSE, pid);
 	}
 

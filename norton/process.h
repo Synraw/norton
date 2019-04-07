@@ -23,6 +23,8 @@ namespace norton {
 		virtual uintptr_t get_peb();
 		std::vector<basic_module> list_modules();
 
+		unsigned long get_process_id() { return m_pid; }
+
 	private:
 		unsigned long m_pid = 0;
 		void *m_handle = nullptr;

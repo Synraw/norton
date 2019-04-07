@@ -1,6 +1,6 @@
 #include "misc.h"
-
 #include "win.h"
+#include "api.h"
 
 namespace norton {
 	uintptr_t get_local_teb() {
@@ -86,5 +86,49 @@ namespace norton {
 
 		CloseHandle(file);
 		return data;
+	}
+
+	unsigned long get_running_thread_by_pid(unsigned long pid) {
+		unsigned long needed_size = 0;
+		api::query_system_information(win::SystemProcessInformation, nullptr, 0, &needed_size);
+		win::PSYSTEM_PROCESS_INFORMATION info = reinterpret_cast<win::PSYSTEM_PROCESS_INFORMATION>(_malloca(needed_size));
+		api::query_system_information(win::SystemProcessInformation, info, needed_size, &needed_size);
+
+		for (; info->NextEntryOffset != 0; info = (win::PSYSTEM_PROCESS_INFORMATION)((DWORD_PTR)info + info->NextEntryOffset)) {
+			if ((DWORD)info->UniqueProcessId != pid)
+				continue;
+
+			printf("found thread with tid %d for pid %d\n", info->Threads[0].ClientId.UniqueThread, pid);
+			for (int tid = 0; tid < info->NumberOfThreads; tid++) {
+				printf("thread state: %d\n", info->Threads[tid].ThreadState);
+				if (info->Threads[tid].ClientId.UniqueThread != GetCurrentThreadId() /*&& info->Threads[tid].ThreadState == 2*/)
+					return info->Threads[tid].ClientId.UniqueThread;
+			}
+		}
+
+		return 0;
+	}
+
+	unsigned long get_pid_by_process_name(std::string process_name) {
+		unsigned long needed_size = 0;
+		api::query_system_information(win::SystemProcessInformation, nullptr, 0, &needed_size);
+		win::PSYSTEM_PROCESS_INFORMATION info = reinterpret_cast<win::PSYSTEM_PROCESS_INFORMATION>(_malloca(needed_size));
+		api::query_system_information(win::SystemProcessInformation, info, needed_size, &needed_size);
+
+
+		char name_conversion_buf[255];
+		for (; info->NextEntryOffset != 0; info = (win::PSYSTEM_PROCESS_INFORMATION)((DWORD_PTR)info + info->NextEntryOffset)) {
+			memset(name_conversion_buf, 0, 255);
+
+			if (info->ImageName.Buffer && wcstombs(name_conversion_buf, info->ImageName.Buffer, 255) == 255)
+				name_conversion_buf[254] = 0;
+
+			std::string module_name = name_conversion_buf;
+			if (module_name == process_name) {
+				return (DWORD)info->UniqueProcessId;
+			}
+		}
+
+		return 0;
 	}
 }

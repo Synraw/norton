@@ -5,6 +5,14 @@
 #include "import_tracker.h"
 #include "manual_loader.h"
 
+unsigned long hijack_me(void *arg) {
+	while (true) {
+		
+	}
+
+	return 0;
+}
+
 int main(int argc, char **argv) {
 	printf("norton gamesafe\n");
 
@@ -13,17 +21,15 @@ int main(int argc, char **argv) {
 	}
 
 	LoadLibraryA("user32.dll");
+	CreateThread(0, 0, (LPTHREAD_START_ROUTINE)hijack_me, 0, 0, 0);
 
 	norton::api::resolve_api();
 
 	norton::process proc;
-	proc.attach(GetCurrentProcessId());
-
-	norton::import_tracker tracker;
-	tracker.setup_process(&proc);
+	proc.attach(norton::get_pid_by_process_name("EscapeFromTarkov.exe"));
 
 	norton::manual_loader loader;
-	if (loader.inject(norton::get_working_directory() + "\\..\\Release\\test_dll_x64.dll", &proc)) {
+	if (loader.inject(norton::get_working_directory() + "\\test_dll_x64.dll", &proc)) {
 		printf("successfully injected!\n");
 	}
 	else {

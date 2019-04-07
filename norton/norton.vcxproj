@@ -137,6 +137,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="api.cpp" />
+    <ClCompile Include="hijack_executor.cpp" />
     <ClCompile Include="imports.cpp" />
     <ClCompile Include="import_tracker.cpp" />
     <ClCompile Include="main.cpp" />
@@ -151,6 +152,7 @@
     <ClInclude Include="api.h" />
     <ClInclude Include="base_executor.h" />
     <ClInclude Include="common.h" />
+    <ClInclude Include="hijack_executor.h" />
     <ClInclude Include="imports.h" />
     <ClInclude Include="import_tracker.h" />
     <ClInclude Include="manual_loader.h" />
@@ -158,6 +160,7 @@
     <ClInclude Include="pe.h" />
     <ClInclude Include="pe_mapper.h" />
     <ClInclude Include="process.h" />
+    <ClInclude Include="win_system_process_information.h" />
     <ClInclude Include="thread_executor.h" />
     <ClInclude Include="win.h" />
     <ClInclude Include="win_api_set.h" />
