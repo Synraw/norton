@@ -5,7 +5,8 @@
 
 namespace norton {
 	bool manual_loader::inject(manual_loader_context& context) {
-
+		m_context = context;
+		return run_current_context();
 	}
 
 	bool manual_loader::inject(std::string file, process *proc) {
@@ -35,7 +36,24 @@ namespace norton {
 	}
 
 	bool manual_loader::inject(void *buffer, process *proc) {
+		m_context.m_file_name = "";
+		m_context.m_process = proc;
+		m_context.m_module_buffer = buffer;
 
+		m_context.m_pe = new pe(m_context.m_module_buffer);
+		if (!m_context.m_pe->is_valid()) {
+			printf("failed to parse pe file\n");
+			return false;
+		}
+
+		m_context.m_imports = new import_tracker();
+		m_context.m_imports->setup_process(m_context.m_process);
+
+		m_context.m_remote_buffer = 0;
+		m_context.m_mapper = new pe_mapper();
+		m_context.m_executor = new hijack_executor(proc);
+
+		return run_current_context();
 	}
 
 	bool manual_loader::run_current_context() {
