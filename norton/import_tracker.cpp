@@ -22,9 +22,9 @@ namespace norton {
 				auto &exp = ittr.second;
 
 				if (exp.m_is_forwarded && exp.m_address == 0) {
-					auto dot		   = exp.m_forward_string.find_last_of('.');
-					auto forward_mod   = exp.m_forward_string.substr(0, dot);
-					auto forward_symb  = exp.m_forward_string.substr(dot+1);
+					auto dot = exp.m_forward_string.find_last_of('.');
+					auto forward_mod = exp.m_forward_string.substr(0, dot);
+					auto forward_symb = exp.m_forward_string.substr(dot + 1);
 
 					std::transform(forward_mod.begin(), forward_mod.end(), forward_mod.begin(), &tolower);
 					exp.m_address = resolve(forward_mod, forward_symb);
@@ -35,6 +35,15 @@ namespace norton {
 						}
 					}
 				}
+			}
+		}
+	}
+
+	void import_tracker::dump_info(std::string module_name) {
+		auto mod_ittr = m_modules.find(module_name);
+		if (mod_ittr != m_modules.end()) {
+			for (auto &exp : mod_ittr->second.m_exports) {
+				printf("%p\t%s\n", exp.second.m_address, exp.second.m_name.c_str());
 			}
 		}
 	}
@@ -62,6 +71,10 @@ namespace norton {
 				if (exp.second.m_ordinal == ordinal)
 					return exp.second.m_address;
 			}
+			printf("[-] module does not contain ordinal %d\n", ordinal);
+		}
+		else {
+			printf("[-] cannot locate module %s\n", module.c_str());
 		}
 
 		return 0;

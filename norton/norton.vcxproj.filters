@@ -87,6 +87,9 @@
     <ClCompile Include="hijack_executor.cpp">
       <Filter>core\injection\manual_load\executors\hijack_executor</Filter>
     </ClCompile>
+    <ClCompile Include="ldr_load.cpp">
+      <Filter>core\injection\ldr_load</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="common.h">
@@ -154,6 +157,9 @@
     </ClInclude>
     <ClInclude Include="win_system_process_information.h">
       <Filter>core\win_api</Filter>
+    </ClInclude>
+    <ClInclude Include="ldr_load.h">
+      <Filter>core\injection\ldr_load</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

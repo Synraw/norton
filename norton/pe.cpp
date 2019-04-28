@@ -92,12 +92,12 @@ namespace norton {
 					}
 
 					if (current_thunk->u1.Ordinal & IMAGE_ORDINAL_FLAG) {
-						imp.m_ordinal = true;
+						imp.m_is_ordinal = true;
 						imp.m_ordinal = (unsigned short)(current_thunk->u1.Ordinal & ~(IMAGE_ORDINAL_FLAG));
 						imp.m_func = std::to_string(imp.m_ordinal);
 					}
 					else {
-						imp.m_ordinal = false;
+						imp.m_is_ordinal = false;
 						imp.m_ordinal = 0;
 						imp.m_func = ((PIMAGE_IMPORT_BY_NAME)(rva_to_ptr(current_thunk->u1.AddressOfData)))->Name;
 					}

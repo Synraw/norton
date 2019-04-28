@@ -10,6 +10,7 @@ namespace norton {
 		uintptr_t resolve(std::string module, std::string name);
 		uintptr_t resolve(std::string module, uint16_t ordinal);
 
+		void dump_info(std::string module);
 	private:
 		struct remote_export {
 			std::string m_name;

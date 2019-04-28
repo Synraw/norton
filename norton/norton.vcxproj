@@ -140,6 +140,7 @@
     <ClCompile Include="hijack_executor.cpp" />
     <ClCompile Include="imports.cpp" />
     <ClCompile Include="import_tracker.cpp" />
+    <ClCompile Include="ldr_load.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="manual_loader.cpp" />
     <ClCompile Include="misc.cpp" />
@@ -155,6 +156,7 @@
     <ClInclude Include="hijack_executor.h" />
     <ClInclude Include="imports.h" />
     <ClInclude Include="import_tracker.h" />
+    <ClInclude Include="ldr_load.h" />
     <ClInclude Include="manual_loader.h" />
     <ClInclude Include="misc.h" />
     <ClInclude Include="pe.h" />
